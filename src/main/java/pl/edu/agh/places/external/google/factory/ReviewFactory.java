@@ -12,7 +12,7 @@ public class ReviewFactory {
 
     public Review create(DetailsReview detailsReview) {
         return Review.builder()
-                .date(Instant.ofEpochMilli(detailsReview.getTime()))
+                .date(Instant.ofEpochSecond(detailsReview.getTime()))
                 .author(detailsReview.getAuthorName())
                 .rating(detailsReview.getRating())
                 .text(detailsReview.getText())
