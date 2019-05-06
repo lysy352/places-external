@@ -13,7 +13,6 @@ import pl.edu.agh.places.external.google.api.search.response.SearchResult;
 import pl.edu.agh.places.external.google.factory.PlaceFactory;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @Component
 @Log4j2
@@ -46,7 +45,6 @@ public class GooglePlacesService {
 
     private Mono<DetailsResult> fetchDetails(String placeId) {
         return placeDetailsService.fetchDetails(placeId)
-                .subscribeOn(Schedulers.elastic())
                 .map(DetailsResponse::getResult);
     }
 
