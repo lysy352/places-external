@@ -1,5 +1,6 @@
 package pl.edu.agh.places.external.google.factory;
 
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import pl.edu.agh.places.domain.dto.Geo;
 import pl.edu.agh.places.domain.dto.Photo;
@@ -12,7 +13,9 @@ import pl.edu.agh.places.external.google.api.search.response.SearchGeometry;
 import pl.edu.agh.places.external.google.api.search.response.SearchLocation;
 import pl.edu.agh.places.external.google.api.search.response.SearchResult;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -48,14 +51,18 @@ public class PlaceFactory {
         return new Geo(location.getLat(), location.getLng());
     }
 
-    private List<Review> createReviews(List<DetailsReview> detailsReviews) {
-        return detailsReviews.stream()
+    private List<Review> createReviews(@Nullable List<DetailsReview> detailsReviews) {
+        return Optional.ofNullable(detailsReviews)
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(reviewFactory::create)
                 .collect(Collectors.toList());
     }
 
-    private List<Photo> createPhotos(List<DetailsPhoto> detailsPhotos) {
-        return detailsPhotos.stream()
+    private List<Photo> createPhotos(@Nullable List<DetailsPhoto> detailsPhotos) {
+        return Optional.ofNullable(detailsPhotos)
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(photoFactory::create)
                 .collect(Collectors.toList());
     }
