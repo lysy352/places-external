@@ -19,7 +19,7 @@ public class YelpReviewFactory {
                 .author(review.getUser().getName())
                 .rating(review.getRating())
                 .text(review.getText())
-                .provider(Provider.GOOGLE)
+                .provider(Provider.YELP)
                 .url(review.getUrl())
                 .build();
     }
