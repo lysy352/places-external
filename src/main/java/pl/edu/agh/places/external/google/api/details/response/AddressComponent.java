@@ -8,11 +8,10 @@ import java.util.List;
 
 @Value
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class DetailsResult {
+public class AddressComponent {
 
-    List<AddressComponent> addressComponents;
-    String formattedPhoneNumber;
-    List<DetailsReview> reviews;
-    List<DetailsPhoto> photos;
+    String longName;
+    String shortName;
+    List<String> types;
 
 }

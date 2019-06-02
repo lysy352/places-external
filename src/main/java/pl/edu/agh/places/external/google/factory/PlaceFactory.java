@@ -21,17 +21,20 @@ import java.util.stream.Collectors;
 @Component
 public class PlaceFactory {
 
+    private final IdFactory idFactory;
     private final ReviewFactory reviewFactory;
     private final PhotoFactory photoFactory;
 
-    public PlaceFactory(ReviewFactory reviewFactory, PhotoFactory photoFactory) {
+    public PlaceFactory(IdFactory idFactory, ReviewFactory reviewFactory, PhotoFactory photoFactory) {
+        this.idFactory = idFactory;
         this.reviewFactory = reviewFactory;
         this.photoFactory = photoFactory;
     }
 
     public Place create(SearchResult searchResult, DetailsResult detailsResult) {
         return Place.builder()
-                .id(searchResult.getPlaceId())
+                .id(idFactory.from(detailsResult.getAddressComponents()))
+                .providerId(searchResult.getPlaceId())
                 .name(searchResult.getName())
                 .category(getCategory(searchResult.getTypes()))
                 .address(searchResult.getFormattedAddress())

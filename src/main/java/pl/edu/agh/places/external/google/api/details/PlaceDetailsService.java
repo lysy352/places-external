@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 public class PlaceDetailsService {
 
     private static final String FIELDS = String.join(",",
+            "address_components",
             "review",
             "formatted_phone_number",
             "photo"

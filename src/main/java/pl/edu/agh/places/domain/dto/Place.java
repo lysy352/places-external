@@ -10,6 +10,7 @@ import java.util.List;
 public class Place {
 
     String id;
+    String providerId;
     String name;
     String category;
     String address;
