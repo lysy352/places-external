@@ -34,6 +34,7 @@ public class YelpPlacesService implements PlacesExternalService {
     @Override
     public Flux<Place> find(String query, SearchArea searchArea) {
         return searchService.fetchPlaces(query, searchArea)
+                .take(5)
                 .flatMap(place -> {
                     var id = place.getId();
                     return Mono.zip(

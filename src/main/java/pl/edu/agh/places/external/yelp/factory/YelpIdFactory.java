@@ -6,6 +6,7 @@ import pl.edu.agh.places.domain.PlaceIdFactory;
 import pl.edu.agh.places.external.yelp.api.details.response.YelpLocation;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Component
 public class YelpIdFactory {
@@ -41,7 +42,7 @@ public class YelpIdFactory {
     }
 
     private String replacePrefixes(String street) {
-        return street.replace("ul. ", "");
+        return Optional.ofNullable(street).map(s -> s.replace("ul. ", "")).orElse(null);
     }
 
 }
