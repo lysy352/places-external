@@ -31,7 +31,7 @@ public class YelpPlaceFactory {
     public Place from(YelpPlace place, YelpDetails details, List<YelpReview> reviews) {
         return Place.builder()
                 .id(idFactory.from(place.getLocation()))
-                .description(place.getUrl())
+                .description("")
                 .providerId(place.getId())
                 .name(place.getName())
                 .category(getCategory(place.getCategories()))
