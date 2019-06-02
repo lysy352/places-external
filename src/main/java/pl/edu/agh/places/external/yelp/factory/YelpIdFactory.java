@@ -38,11 +38,10 @@ public class YelpIdFactory {
             }
         }
         return new String[]{street, streetNumber};
-
     }
 
     private String replacePrefixes(String street) {
-        return street.replace("ul.", "");
+        return street.replace("ul. ", "");
     }
 
 }
