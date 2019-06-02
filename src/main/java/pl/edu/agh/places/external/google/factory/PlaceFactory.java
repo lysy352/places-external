@@ -42,6 +42,8 @@ public class PlaceFactory {
                 .phone(detailsResult.getFormattedPhoneNumber())
                 .reviews(createReviews(detailsResult.getReviews()))
                 .photos(createPhotos(detailsResult.getPhotos()))
+                .rating(detailsResult.getRating())
+                .description(detailsResult.getUrl())
                 .build();
     }
 

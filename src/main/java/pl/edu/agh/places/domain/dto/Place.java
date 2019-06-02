@@ -19,5 +19,6 @@ public class Place {
     String description;
     List<Review> reviews;
     List<Photo> photos;
+    int rating;
 
 }

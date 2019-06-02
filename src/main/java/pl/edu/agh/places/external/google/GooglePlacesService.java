@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import pl.edu.agh.places.domain.dto.Place;
 import pl.edu.agh.places.domain.dto.SearchArea;
+import pl.edu.agh.places.external.PlacesExternalService;
 import pl.edu.agh.places.external.google.api.details.PlaceDetailsService;
 import pl.edu.agh.places.external.google.api.details.response.DetailsResponse;
 import pl.edu.agh.places.external.google.api.details.response.DetailsResult;
@@ -16,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Log4j2
-public class GooglePlacesService {
+public class GooglePlacesService implements PlacesExternalService {
 
     private final PlaceSearchService placeSearchService;
     private final PlaceDetailsService placeDetailsService;

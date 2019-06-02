@@ -12,7 +12,9 @@ public class PlaceDetailsService {
             "address_components",
             "review",
             "formatted_phone_number",
-            "photo"
+            "photo",
+            "rating",
+            "url"
     );
 
     private final GooglePlacesClient client;

@@ -1,4 +1,4 @@
-package pl.edu.agh.places.external.google.api.details.response;
+package pl.edu.agh.places.external.yelp.api.details.response;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -8,13 +8,18 @@ import java.util.List;
 
 @Value
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class DetailsResult {
+public class YelpDetails {
 
-    List<AddressComponent> addressComponents;
-    String formattedPhoneNumber;
-    List<DetailsReview> reviews;
-    List<DetailsPhoto> photos;
+    String id;
     int rating;
+    int reviewsCount;
+    String name;
     String url;
+    YelpCoordinates coordinates;
+    String imageUrl;
+    YelpLocation location;
+    String price;
+    List<String> photos;
+
 
 }

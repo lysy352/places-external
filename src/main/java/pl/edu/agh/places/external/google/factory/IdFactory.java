@@ -1,6 +1,7 @@
 package pl.edu.agh.places.external.google.factory;
 
 import org.springframework.stereotype.Component;
+import pl.edu.agh.places.domain.PlaceIdFactory;
 import pl.edu.agh.places.external.google.api.details.response.AddressComponent;
 
 import java.util.*;
@@ -11,16 +12,20 @@ public class IdFactory {
     private static String STREET_NUMBER = "street_number";
     private static String STREET = "route";
     private static String CITY = "locality";
-    private static String ID_PATTERN = "%s_%s_%s";
+
+    private final PlaceIdFactory placeIdFactory;
+
+    public IdFactory(PlaceIdFactory placeIdFactory) {
+        this.placeIdFactory = placeIdFactory;
+    }
 
     public String from(List<AddressComponent> addressComponents) {
         Map<String, List<AddressComponent>> components = groupAddressComponents(addressComponents);
-        return String.format(ID_PATTERN,
+        return placeIdFactory.createId(
                 this.getDefaultName(STREET, components),
                 this.getDefaultName(STREET_NUMBER, components),
                 this.getDefaultName(CITY, components)
-        )
-                .toLowerCase();
+        );
     }
 
     private Map<String, List<AddressComponent>> groupAddressComponents(List<AddressComponent> addressComponents) {
@@ -33,10 +38,9 @@ public class IdFactory {
         return grouped;
     }
 
-    private String getDefaultName(String componentType, Map<String, List<AddressComponent>> components) {
+    private Optional<String> getDefaultName(String componentType, Map<String, List<AddressComponent>> components) {
         return Optional.ofNullable(components.get(componentType))
-                .map(this::getDefaultName)
-                .orElse("");
+                .map(this::getDefaultName);
     }
 
     private String getDefaultName(List<AddressComponent> components) {
